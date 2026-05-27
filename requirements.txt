@@ -1,0 +1,30 @@
+# CT2PET VQ-VAE-2 Requirements
+# Python 3.9+
+
+# Core dependencies
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# Medical imaging
+nibabel>=5.0.0
+
+# Utilities
+numpy>=1.24.0
+pyyaml>=6.0
+tqdm>=4.65.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Logging
+tensorboard>=2.13.0
+
+# Data processing
+pandas>=2.0.0
+scikit-image>=0.21.0
+
+# Optional (for advanced features)
+lpips>=0.1.4  # For perceptual loss
+# pytorch-fid>=0.3.0  # For FID metric

@@ -1,0 +1,116 @@
+# CT2PET VQ-VAE-2 Configuration File
+# ==============================================
+
+# Data Configuration
+data:
+  data_root: "/scratch/b24cs1085/CPDM/processed_data"
+  modality_ct: "A"  # CT scans
+  modality_pet: "B"  # PET scans
+  image_size: 256
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  num_workers: 4
+  
+  # Normalization parameters
+  ct_window_min: -1000
+  ct_window_max: 1000
+  pet_log_scale: true
+  pet_max_log_value: null  # Will be computed from dataset if null
+
+# VQ-VAE-2 Architecture
+vqvae:
+  image_channels: 1  # Grayscale medical images
+  base_channels: 128
+  num_res_blocks: 2
+  
+  # Codebook configuration
+  codebook_size: 512
+  embedding_dim: 64
+  commitment_cost: 0.25
+  
+  # Hierarchical levels
+  top_downsample_factor: 4  # 256 -> 64
+  bottom_downsample_factor: 2  # 256 -> 128
+
+# Translator (U-Net) Architecture
+translator:
+  in_channels: 1  # CT input
+  base_channels: 64
+  num_levels: 4
+  num_res_blocks: 2
+  out_channels: 512  # Number of codebook classes
+  dropout: 0.1
+
+# Training Configuration - Phase 1 (VQ-VAE)
+train_vqvae:
+  batch_size: 64
+  num_epochs: 100
+  learning_rate: 3.0e-4
+  weight_decay: 0.01
+  optimizer: "adamw"
+  
+  # Loss weights
+  recon_loss_weight: 1.0
+  perceptual_loss_weight: 0.0  # Set to 0.1 if needed
+  
+  # Learning rate schedule
+  lr_scheduler: "cosine"
+  lr_warmup_epochs: 5
+  lr_min: 1.0e-6
+  
+  # Mixed precision
+  use_amp: true
+  
+  # Checkpointing
+  save_every: 10
+  val_every: 2
+
+# Training Configuration - Phase 2 (Translator)
+train_translator:
+  batch_size: 4
+  gradient_accumulation_steps: 16  # Effective batch size = 4 * 16 = 64
+  num_epochs: 100
+  learning_rate: 3.0e-4
+  weight_decay: 0.01
+  optimizer: "adamw"
+  
+  # Focal Loss Settings (replaces standard Cross-Entropy)
+  use_focal_loss: true
+  focal_gamma: 2.0   # Focusing parameter (higher = more focus on hard examples)
+  focal_alpha: 1.0   # Balancing factor (1.0 = balanced)
+  
+  # Pretrained VQ-VAE checkpoint
+  vqvae_checkpoint: "checkpoints/vqvae_best.pth"
+  freeze_vqvae: true
+  
+  # Learning rate schedule
+  lr_scheduler: "cosine"
+  lr_warmup_epochs: 10
+  lr_min: 1.0e-6
+  
+  # Mixed precision
+  use_amp: true
+  
+  # Checkpointing
+  save_every: 20
+  val_every: 5
+
+# Inference Configuration
+inference:
+  vqvae_checkpoint: "checkpoints/vqvae_best.pth"
+  translator_top_checkpoint: "checkpoints/translator_top_best.pth"
+  translator_bottom_checkpoint: "checkpoints/translator_bottom_best.pth"
+  batch_size: 16
+  output_dir: "outputs"
+
+# Logging
+logging:
+  tensorboard_dir: "logs/tensorboard"
+  print_freq: 50
+  log_images: true
+  log_images_freq: 500
+
+# Hardware
+device: "cuda"
+seed: 42

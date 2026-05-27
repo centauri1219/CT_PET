@@ -1,0 +1,144 @@
+CT to PET Translation - Test Set Results
+============================================================
+
+Total slices evaluated: 500
+Number of patients: 20
+Dataset: /scratch/b24cs1085/CPDM/processed_data
+
+Overall Average Metrics (averaged across patients):
+------------------------------------------------------------
+PSNR: 22.2124
+SSIM: 0.7797
+MAE: 0.0777
+LPIPS: 0.3989
+
+Per-Patient Results:
+------------------------------------------------------------
+
+Lung_Dx-A0167 (27 slices):
+  PSNR: 22.9231
+  SSIM: 0.7869
+  MAE: 0.0761
+  LPIPS: 0.4143
+
+Lung_Dx-A0168 (28 slices):
+  PSNR: 21.5797
+  SSIM: 0.8821
+  MAE: 0.0503
+  LPIPS: 0.2615
+
+Lung_Dx-A0176 (25 slices):
+  PSNR: 22.8951
+  SSIM: 0.7577
+  MAE: 0.0677
+  LPIPS: 0.4090
+
+Lung_Dx-A0178 (27 slices):
+  PSNR: 20.5856
+  SSIM: 0.7394
+  MAE: 0.0757
+  LPIPS: 0.4640
+
+Lung_Dx-A0179 (16 slices):
+  PSNR: 22.3638
+  SSIM: 0.8005
+  MAE: 0.0896
+  LPIPS: 0.3794
+
+Lung_Dx-A0182 (25 slices):
+  PSNR: 23.4565
+  SSIM: 0.7618
+  MAE: 0.0648
+  LPIPS: 0.3590
+
+Lung_Dx-A0193 (35 slices):
+  PSNR: 23.6571
+  SSIM: 0.8629
+  MAE: 0.0400
+  LPIPS: 0.3495
+
+Lung_Dx-A0194 (21 slices):
+  PSNR: 22.5464
+  SSIM: 0.7673
+  MAE: 0.0797
+  LPIPS: 0.4220
+
+Lung_Dx-A0197 (26 slices):
+  PSNR: 22.6630
+  SSIM: 0.7562
+  MAE: 0.0660
+  LPIPS: 0.3835
+
+Lung_Dx-A0201 (21 slices):
+  PSNR: 20.8891
+  SSIM: 0.7246
+  MAE: 0.0924
+  LPIPS: 0.4446
+
+Lung_Dx-A0224 (26 slices):
+  PSNR: 25.0454
+  SSIM: 0.8759
+  MAE: 0.0375
+  LPIPS: 0.3143
+
+Lung_Dx-A0239 (28 slices):
+  PSNR: 21.8600
+  SSIM: 0.7503
+  MAE: 0.0905
+  LPIPS: 0.4142
+
+Lung_Dx-A0246 (17 slices):
+  PSNR: 22.6121
+  SSIM: 0.7847
+  MAE: 0.0552
+  LPIPS: 0.4064
+
+Lung_Dx-A0252 (20 slices):
+  PSNR: 23.8053
+  SSIM: 0.7953
+  MAE: 0.0718
+  LPIPS: 0.3944
+
+Lung_Dx-A0257 (16 slices):
+  PSNR: 20.6329
+  SSIM: 0.7580
+  MAE: 0.1031
+  LPIPS: 0.4389
+
+Lung_Dx-A0265 (24 slices):
+  PSNR: 22.7959
+  SSIM: 0.8126
+  MAE: 0.0789
+  LPIPS: 0.4064
+
+Lung_Dx-G0044 (25 slices):
+  PSNR: 22.9403
+  SSIM: 0.8119
+  MAE: 0.0785
+  LPIPS: 0.3675
+
+Lung_Dx-G0049 (40 slices):
+  PSNR: 19.3849
+  SSIM: 0.7106
+  MAE: 0.1245
+  LPIPS: 0.4664
+
+Lung_Dx-G0057 (40 slices):
+  PSNR: 21.2501
+  SSIM: 0.7389
+  MAE: 0.0965
+  LPIPS: 0.4094
+
+Lung_Dx-G0059 (13 slices):
+  PSNR: 20.3627
+  SSIM: 0.7163
+  MAE: 0.1148
+  LPIPS: 0.4727
+
+
+Metric Guidelines:
+------------------------------------------------------------
+PSNR > 25 dB: Good reconstruction
+SSIM > 0.80: High structural similarity
+MAE < 0.05: Low pixel-wise error
+LPIPS < 0.20: Good perceptual similarity
